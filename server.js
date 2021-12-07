@@ -15,18 +15,16 @@ app.use(express.json());
 
 app.use(express.static("public"));
 app.use(require('./routes/htmlRoutes'));
-// app.use(require('./routes/apiRoutes'));
+app.use(require('./routes/apiRoutes'));
 
-
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/b", 
-  { useNewUrlParser: true,
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/FitnessDb", 
+  { 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false 
   }
 );
-
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

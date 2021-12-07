@@ -26,6 +26,6 @@ const resistanceSchema = new Schema({
   }
 });
 
-const Resistance = mongoose.model("Workout", resistanceSchema);
+const Resistance = mongoose.model("Resistance", resistanceSchema);
 
 module.exports = Resistance;
