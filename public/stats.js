@@ -10,13 +10,33 @@ function calculateTotalWeight(data) {
     }, 0);
 
     totals.push(workoutTotal);
+    console.log(workoutTotal);
+  });
+
+  return totals;
+}
+function calculateTotalDuration(data) {
+  const totals = [];
+
+  data.forEach((workout) => {
+    const workoutTotal = workout.exercises.reduce((total, { type, duration }) => {
+      if (type === 'resistance') {
+        return total + duration;
+      }
+      return total;
+    }, 0);
+
+    totals.push(workoutTotal);
+    console.log(workoutTotal);
   });
 
   return totals;
 }
 
-function populateChart(data) {
-  const durations = data.map(({ totalDuration }) => totalDuration);
+async function populateChart(data) {
+  console.log(data);
+  // console.log(data[0]);
+  const durations = calculateTotalDuration(data);
   const pounds = calculateTotalWeight(data);
 
   const line = document.querySelector('#canvas').getContext('2d');
@@ -43,7 +63,7 @@ function populateChart(data) {
           backgroundColor: 'red',
           borderColor: 'red',
           data: durations,
-          fill: false,
+          fill: true,
         },
       ],
     },
